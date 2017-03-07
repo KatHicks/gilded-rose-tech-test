@@ -2,6 +2,9 @@ require './lib/item'
 
 class GildedRose
 
+  LOWER_LIMIT = 0
+  UPPER_LIMIT = 50
+
   def initialize(items)
     @items = items
   end
@@ -27,7 +30,7 @@ class GildedRose
           change_quality(item, 1)
         else
           if is_backstage_pass?(item) || is_sulfuras?(item)
-            item.quality = item.quality - item.quality
+            item.quality = LOWER_LIMIT
           else
             change_quality(item, - 1)
           end
@@ -62,11 +65,11 @@ class GildedRose
   end
 
   def quality_within_range?(item)
-    item.quality > 0 && item.quality < 50
+    item.quality > LOWER_LIMIT && item.quality < UPPER_LIMIT
   end
 
   def sell_in_passed?(item)
-    item.sell_in < 0
+    item.sell_in < LOWER_LIMIT
   end
 
 end
