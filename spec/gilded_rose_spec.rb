@@ -28,6 +28,14 @@ describe GildedRose do
       end
       expect( items[0].quality ).not_to eq( -2 )
     end
+
+    context "when item is 'aged brie'" do
+      it "does not degrade the quality" do
+        items = [Item.new("Aged Brie", 2, 0)]
+        GildedRose.new(items).update_quality()
+        expect( items[0].quality ).to eq( 1 )
+      end
+    end
   end
 
 end
