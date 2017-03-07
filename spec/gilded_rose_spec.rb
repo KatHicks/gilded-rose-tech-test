@@ -15,6 +15,11 @@ describe GildedRose do
       expect{ GildedRose.new(items).update_quality() }.to change{ items[0].quality }
     end
 
+    it "degrades the sell-in value by 1" do
+      items = [Item.new("Pocket Watch", 10, 30)]
+      expect{ GildedRose.new(items).update_quality() }.to change{ items[0].sell_in }.by( -1 )
+    end
+
     it "degrades the quality twice as fast if sell by date has passed" do
       items = [Item.new("Pocket Watch", -2, 30)]
       GildedRose.new(items).update_quality()
