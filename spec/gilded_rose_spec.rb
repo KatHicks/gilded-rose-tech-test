@@ -3,6 +3,7 @@ require 'gilded_rose'
 describe GildedRose do
 
   describe "#update_quality" do
+
     it "does not change the name" do
       items = [Item.new("Pocket Watch", 10, 30)]
       GildedRose.new(items).update_quality()
@@ -30,12 +31,15 @@ describe GildedRose do
     end
 
     context "when item is 'aged brie'" do
+
       it "does not degrade the quality" do
         items = [Item.new("Aged Brie", 2, 0)]
         GildedRose.new(items).update_quality()
         expect( items[0].quality ).to eq( 1 )
       end
+      
     end
+
   end
 
 end
