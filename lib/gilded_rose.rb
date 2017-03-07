@@ -9,19 +9,15 @@ class GildedRose
     @items = items
   end
 
-  def update_quality()
+  def update_quality
     @items.each do |item|
       change_sell_in(item, -1) unless is_sulfuras?(item)
       change_quality(item, -1) unless is_special?(item)
 
       if is_special?(item)
         change_quality(item, 1)
-        if is_backstage_pass?(item) && item.sell_in < 11
-          change_quality(item, 1)
-        end
-        if is_backstage_pass?(item) && item.sell_in < 6
-          change_quality(item, 1)
-        end
+        change_quality(item, 1) if is_backstage_pass?(item) && item.sell_in < 11
+        change_quality(item, 1) if is_backstage_pass?(item) && item.sell_in < 6
       end
 
       if sell_in_passed?(item)
