@@ -25,7 +25,7 @@ class GildedRose
           end
         end
       end
-      if item.sell_in < 0
+      if sell_in_passed?(item)
         if !is_aged_brie?(item)
           if !is_backstage_pass?(item)
             if !is_sulfuras?(item)
@@ -68,4 +68,9 @@ class GildedRose
   def quality_within_range?(item)
     item.quality > 0 && item.quality < 50
   end
+
+  def sell_in_passed?(item)
+    item.sell_in < 0
+  end
+
 end
