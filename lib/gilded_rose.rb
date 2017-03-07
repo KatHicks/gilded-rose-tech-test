@@ -15,13 +15,15 @@ class GildedRose
       change_quality(item, -1) unless is_special?(item)
 
       if is_special?(item)
-        change_quality(item, 1)
-        change_quality(item, 1) if is_backstage_pass?(item) && item.sell_in < 11
-        change_quality(item, 1) if is_backstage_pass?(item) && item.sell_in < 6
+        change_quality(item, -2) if is_conjured?(item)
+        change_quality(item,  1) if is_aged_brie?(item) || is_backstage_pass?(item) || is_sulfuras?(item)
+        change_quality(item,  1) if is_backstage_pass?(item) && item.sell_in < 11
+        change_quality(item,  1) if is_backstage_pass?(item) && item.sell_in < 6
       end
 
       if sell_in_passed?(item)
         change_quality(item, -1) unless is_special?(item)
+        change_quality(item, -2) if is_conjured?(item)
         change_quality(item, 1) if is_aged_brie?(item)
         item.quality = LOWER_LIMIT if is_backstage_pass?(item)
       end
@@ -32,7 +34,7 @@ class GildedRose
   private
 
   def is_special?(item)
-    is_aged_brie?(item) || is_backstage_pass?(item) || is_sulfuras?(item)
+    is_aged_brie?(item) || is_backstage_pass?(item) || is_sulfuras?(item) || is_conjured?(item)
   end
 
   def is_aged_brie?(item)
@@ -45,6 +47,10 @@ class GildedRose
 
   def is_backstage_pass?(item)
     item.name == "Backstage passes to a TAFKAL80ETC concert"
+  end
+
+  def is_conjured?(item)
+    item.name == "Conjured"
   end
 
   def change_quality(item, value)

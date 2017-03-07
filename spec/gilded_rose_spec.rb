@@ -110,6 +110,19 @@ describe GildedRose do
 
     end
 
+    context "when item is 'conjured'" do
+
+      it "degrades in quality twice as fast as normal items" do
+        items = [
+          Item.new("Conjured", 10, 30),
+          Item.new("Conjured",  0, 30)
+        ]
+        expect{ GildedRose.new(items).update_quality() }.to change{ items[0].quality }.by( -2 )
+        expect{ GildedRose.new(items).update_quality() }.to change{ items[1].quality }.by( -4 )
+      end
+
+    end
+
   end
 
 end
