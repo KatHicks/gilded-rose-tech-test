@@ -10,27 +10,22 @@ class GildedRose
     @items.each do |item|
       change_sell_in(item, -1) unless is_sulfuras?(item)
 
-      if !is_aged_brie?(item) and !is_backstage_pass?(item)
-        if !is_sulfuras?(item)
-          change_quality(item, - 1)
-        end
+      if !is_aged_brie?(item) && !is_backstage_pass?(item) && !is_sulfuras?(item)
+        change_quality(item, - 1)
       else
         change_quality(item, 1)
-        if is_backstage_pass?(item)
-          if item.sell_in < 11
-              change_quality(item, 1)
-          end
-          if item.sell_in < 6
-              change_quality(item, 1)
-          end
+        if is_backstage_pass?(item) && item.sell_in < 11
+          change_quality(item, 1)
+        end
+        if is_backstage_pass?(item) && item.sell_in < 6
+          change_quality(item, 1)
         end
       end
+
       if sell_in_passed?(item)
         if !is_aged_brie?(item)
-          if !is_backstage_pass?(item)
-            if !is_sulfuras?(item)
-              change_quality(item, - 1)
-            end
+          if !is_backstage_pass?(item) && !is_sulfuras?(item)
+            change_quality(item, - 1)
           else
             item.quality = item.quality - item.quality
           end
@@ -38,6 +33,7 @@ class GildedRose
           change_quality(item, 1)
         end
       end
+
     end
   end
 
