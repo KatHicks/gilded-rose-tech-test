@@ -30,6 +30,15 @@ describe GildedRose do
       expect( items[0].quality ).not_to eq( -2 )
     end
 
+    it "does not increase the quality to more than 50" do
+      items = [Item.new("Aged Brie", 2, 48)]
+      store = GildedRose.new(items)
+      4.times do
+        store.update_quality()
+      end
+      expect( items[0].quality ).not_to eq( 52 )
+    end
+
     context "when item is 'aged brie'" do
 
       it "does not degrade the quality" do
