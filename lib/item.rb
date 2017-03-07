@@ -27,4 +27,8 @@ class Item
     self.quality += value
   end
 
+  def update_sell_in(value)
+    self.sell_in += value
+  end
+
 end

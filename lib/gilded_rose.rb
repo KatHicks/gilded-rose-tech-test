@@ -32,7 +32,7 @@ class GildedRose
         end
       end
       if !item.is_sulfuras?
-        item.sell_in = item.sell_in - 1
+        item.update_sell_in(-1)
       end
       if item.sell_in < 0
         if !item.is_aged_brie?
