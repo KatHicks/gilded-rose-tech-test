@@ -12,8 +12,9 @@ class GildedRose
   def update_quality()
     @items.each do |item|
       change_sell_in(item, -1) unless is_sulfuras?(item)
+      change_quality(item, -1) unless is_special?(item)
 
-      if is_aged_brie?(item) || is_backstage_pass?(item) || is_sulfuras?(item)
+      if is_special?(item)
         change_quality(item, 1)
         if is_backstage_pass?(item) && item.sell_in < 11
           change_quality(item, 1)
@@ -21,8 +22,6 @@ class GildedRose
         if is_backstage_pass?(item) && item.sell_in < 6
           change_quality(item, 1)
         end
-      else
-        change_quality(item, - 1)
       end
 
       if sell_in_passed?(item)
@@ -32,7 +31,7 @@ class GildedRose
           if is_backstage_pass?(item) || is_sulfuras?(item)
             item.quality = LOWER_LIMIT
           else
-            change_quality(item, - 1)
+            change_quality(item, -1)
           end
         end
       end
@@ -41,6 +40,10 @@ class GildedRose
   end
 
   private
+
+  def is_special?(item)
+    is_aged_brie?(item) || is_backstage_pass?(item) || is_sulfuras?(item)
+  end
 
   def is_aged_brie?(item)
     item.name == "Aged Brie"
