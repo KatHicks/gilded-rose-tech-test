@@ -23,4 +23,8 @@ class Item
     self.name == "Backstage passes to a TAFKAL80ETC concert"
   end
 
+  def update_quality(value)
+    self.quality += value
+  end
+
 end

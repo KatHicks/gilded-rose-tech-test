@@ -36,7 +36,7 @@ class GildedRose
       end
       if item.sell_in < 0
         if !item.is_aged_brie?
-          if item.is_backstage_pass?
+          if !item.is_backstage_pass?
             if item.quality > 0
               if !item.is_sulfuras?
                 item.quality = item.quality - 1
