@@ -50,7 +50,7 @@ class GildedRose
   end
 
   def is_conjured?(item)
-    item.name == "Conjured"
+    item.name == "Conjured Mana Cake"
   end
 
   def change_quality(item, value)
