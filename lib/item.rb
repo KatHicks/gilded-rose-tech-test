@@ -24,11 +24,17 @@ class Item
   end
 
   def update_quality(value)
-    self.quality += value
+    if quality_within_range?
+      self.quality += value
+    end
   end
 
   def update_sell_in(value)
     self.sell_in += value
+  end
+
+  def quality_within_range?
+    self.quality > 0 && self.quality < 50
   end
 
 end
