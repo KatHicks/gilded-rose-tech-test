@@ -2,8 +2,10 @@ require './lib/item'
 
 class GildedRose
 
-  LOWER_LIMIT = 0
-  UPPER_LIMIT = 50
+  LOWER_LIMIT          = 0
+  UPPER_LIMIT          = 50
+  TICKET_THRESHOLD_ONE = 11
+  TICKET_THRESHOLD_TWO = 6
 
   def initialize(items)
     @items = items
@@ -17,8 +19,8 @@ class GildedRose
       if is_special?(item)
         change_quality(item, -2) if is_conjured?(item)
         change_quality(item,  1) if is_aged_brie?(item) || is_backstage_pass?(item) || is_sulfuras?(item)
-        change_quality(item,  1) if is_backstage_pass?(item) && item.sell_in < 11
-        change_quality(item,  1) if is_backstage_pass?(item) && item.sell_in < 6
+        change_quality(item,  1) if is_backstage_pass?(item) && item.sell_in < TICKET_THRESHOLD_ONE
+        change_quality(item,  1) if is_backstage_pass?(item) && item.sell_in < TICKET_THRESHOLD_TWO
       end
 
       if sell_in_passed?(item)
