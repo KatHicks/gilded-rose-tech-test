@@ -21,15 +21,9 @@ class GildedRose
       end
 
       if sell_in_passed?(item)
-        if is_aged_brie?(item)
-          change_quality(item, 1)
-        else
-          if is_backstage_pass?(item) || is_sulfuras?(item)
-            item.quality = LOWER_LIMIT
-          else
-            change_quality(item, -1)
-          end
-        end
+        change_quality(item, -1) unless is_special?(item)
+        change_quality(item, 1) if is_aged_brie?(item)
+        item.quality = LOWER_LIMIT if is_backstage_pass?(item) || is_sulfuras?(item)
       end
 
     end
