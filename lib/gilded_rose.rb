@@ -53,12 +53,12 @@ class GildedRose
     end
   end
 
-  def change_sell_in(item, value)
-    item.sell_in += value
-  end
-
   def quality_within_range?(item)
     item.quality > LOWER_LIMIT && item.quality < UPPER_LIMIT
+  end
+
+  def change_sell_in(item, value)
+    item.sell_in += value
   end
 
   def sell_in_passed?(item)
