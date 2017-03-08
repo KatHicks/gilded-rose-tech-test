@@ -56,7 +56,7 @@ class GildedRose
   end
 
   def change_quality(item, value)
-    if quality_within_range?(item)
+    if quality_within_range?(item) || is_aged_brie?(item)
       item.quality += value
     end
   end
