@@ -1,7 +1,7 @@
 # Practice Technical Test: Gilded Rose
 ### Makers Academy Week 10
 
--- BADGES --
+[![Build Status](https://travis-ci.org/KatHicks/gilded-rose-tech-test.svg?branch=master)](https://travis-ci.org/KatHicks/gilded-rose-tech-test) [![Code Climate](https://lima.codeclimate.com/github/KatHicks/gilded-rose-tech-test/badges/gpa.svg)](https://lima.codeclimate.com/github/KatHicks/gilded-rose-tech-test)
 
 ### Instructions
 
